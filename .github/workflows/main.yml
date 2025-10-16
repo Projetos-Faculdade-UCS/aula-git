@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-node@v6.0.0
         with:
           node-version: '20.16.0'
+      - name: install netlify
+        run: npm install netlify-cli -g
       - name: Deploy
         run: netlify deploy --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN --dir="." --prod
           
