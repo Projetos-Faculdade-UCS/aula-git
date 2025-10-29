@@ -1,11 +1,11 @@
 
-name: Pipeline prod
+name: Pipeline Develop
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
   pull_request:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   build:
@@ -18,8 +18,7 @@ jobs:
         uses: actions/setup-node@v6.0.0
         with:
           node-version: '20.16.0'
-      - name: install netlify
-        run: npm install netlify-cli -g
+      - name: install vercel
+        run: npm install -g vercel
       - name: Deploy
-        run: netlify deploy --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --dir="." --prod
-          
+        run: npx vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
